@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rohan.R-
+    Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    html, body {
+      scroll-behavior: smooth;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: black;
+      overflow-x: hidden; /* Prevent scrolling */
+    }
+
+   
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('/mnt/data/back.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: -1;
+      opacity: 0.3;
+    }
+  
+
+
+    body.home-page::before {
+      background-image: url('homebackground.jpg');
+    }
+
+    body:not(.home-page)::before {
+      background-image: url('back.jpg');
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #ff004f;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      font-family: 'Bebas Neue', cursive;
+      color: white;
+    }
+    .navbar .logo {font-size: 2rem;}
+    .nav-links {list-style: none; display: flex; gap: 1.5rem;}
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.1rem;
+      transition: 0.3s ease;
+    }
+    .nav-links li a:hover {text-decoration: underline;}
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .menu-toggle {display: block;}
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #ff004f;
+        margin-top: 1rem;
+        padding-left: 1rem;
+      }
+      .nav-links.show {display: flex;}
+      .nav-links li {margin-bottom: 0.5rem;}
+    }
+    .section {
+      min-height: 100vh;
+      padding: 6rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .home {
+      flex-direction: row;
+      justify-content: space-around;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .home-left h1 {
+      font-size: 3rem;
+      font-family: 'Bebas Neue', cursive;
+      animation: slideInLeft 1s ease;
+    }
+    .home-left h2 {
+      margin-top: 0.5rem;
+      font-size: 1.5rem;
+    }
+    .home-right img {
+        width: 100%;
+        max-width: 300px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease-in-out;
+    }
+    .home-right img:hover {
+      transform: scale(1.05);
+    }
+    .section h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      transition: 0.3s ease;
+    }
+    .skills-container, .work-grid {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 1rem;
+    }
+    .skill-box, .work-box {
+      width: 45%;
+      background: rgba(255, 255, 255, 0.9);
+      margin: 1rem 0;
+      padding: 1.5rem;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border: 2px solid #ff004f;
+      cursor: pointer;
+    }
+    .skill-box:hover, .work-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #ff004f;
+      background: #444;
+      color: white;
+    }
+    .download-btn {
+      background: #ff004f;
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: background 0.3s ease;
+    }
+    .download-btn:hover {background: #cc003d;}
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 500px;
+      font-size: 1.3rem;
+    }
+    input, textarea {
+      padding: 1rem;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      border: 1px solid #ff004f;
+    }
+    button {
+      background: #ff004f;
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {background: #cc003d;}
+    .social-icons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 2rem;
+    }
+    .social-icons a {color: black; transition: 0.3s;}
+    .social-icons a:hover {color: #ff004f;}
+    .copyright {
+      background: #333;
+      color: white;
+      font-size: 15px;
+      padding: 4px 0;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 30px;
+    }
+    #msg{
+      color:rgba(0, 255, 55, 0.956);
+      margin-top: -15px;
+      display: block;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes slideInLeft {
+      from {transform: translateX(-100%); opacity: 0;}
+      to {transform: translateX(0); opacity: 1;}
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Rohan R</div>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#myworks">My Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <section class="section home" id="home">
+    <div class="home-left">
+      <h1>Rohan R</h1>
+      <h2>B.Tech in Computer Science</h2>
+    </div>
+    <div class="home-right">
+      <img src="profile.jpg" alt="Rohan R"/>
+    </div>
+  </section>
+  <section class="section" id="about">
+    <h2>About Me</h2>
+    <p>Hi, I’m Rohan R, currently pursuing B.Tech in Computer Science at Amrita Vishwa Vidyapeetham, Amritapuri 
+      Campus. I studied under the ICSE syllabus at L’école Chempaka till class 10 and completed Class 12 under 
+      the ISC syllabus at Kurikose Elias English Medium School.</p><br>
+      <p>I have completed the Foundation Level in AI and Data Science from IIT Madras, where I gained practical 
+        skills in Python, computational thinking, and effective communication for AI applications.</p><br>
+      <p> I’m skilled in Python, Java, and web design, and I have a foundational understanding of modern 
+        physics, engineering principles, and mathematics, including calculus and discrete math.</p><br>
+
+      <p>I'm a curious learner with a creative edge, always eager to build, explore, and grow in the world of technology.</p>
+  </section>
+  <section class="section" id="skills">
+    <h2>Skills</h2>
+    <div class="skills-container">
+      <div class="skill-box">
+        <h3>IIT Madras Foundation level in Computational Thinking for Artificial Intelligence and Data Science</h3>
+        <p>Core concepts of logic and problem-solving for AI and DS taught by IIT Madras.</p>
+      </div>
+      <div class="skill-box">
+        <h3>IIT Madras Foundation level in Python for Artificial Intelligence and Data Science</h3>
+        <p>Proficient in Python through IIT Madras foundation course with hands-on data projects.</p>
+      </div>
+      <div class="skill-box">
+        <h3>IIT Madras Foundation level in English Language for Artificial Intelligence and Data Science</h3>
+        <p>Foundation course from IIT Madras in English language tailored for AI and Data Science communication.</p>
+      </div>
+      <div class="skill-box">
+        <h3>Mathematical Intellect</h3>
+        <p>National 1st Runner-up in All India Abacus Tournament held in Coimbatore and Hyderabad along with 
+          state level runners-up award on three occassions in Kerala.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="myworks">
+    <h2>My Works</h2>
+    <div class="work-grid">
+      <div class="work-box">
+        <h3>Programming</h3>
+        <p>Deep understanding of Python's OOP and functional features. Proficient in designing secure and maintainable Java backends.Website designing and implementation with HTML & CSS.</p>
+      </div>
+      <div class="work-box">
+        <h3>Math Foundations</h3>
+        <p>Conceptual understanding and implementation of Calculus, Discrete Mathematics, and Linear Algebra.</p>
+      </div>
+      <div class="work-box">
+        <h3>Engineering Basics</h3>
+        <p>Knowledge in basic physics, electrical/electronic and mechanical engineering concepts.</p>
+      </div>
+      <div class="work-box">
+        <h3>Modern Physics</h3>
+        <p>Foundational ideas from quantum physics to modern electronics as part of academic curriculum.</p>
+      </div>
+    </div>
+<a href="Resume.pdf" class="download-btn" target="_blank">View Resume</a>
+
+  </section>
+  <section class="section" id="contact">
+    <h2>Contact Me</h2>
+    <form name="submit-to-google-sheet">
+      <input type="text" name="Name" placeholder="Your Name" required>
+      <input type="email" name="Email" placeholder="Your Email" required>
+      <textarea rows="5" name="Message" placeholder="Your Comment" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <span id="msg"></span>
+    <div class="social-icons">
+      <a href="mailto:rohanriji@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/rohan-r-67a948323/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/rohan25006" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.instagram.com/_its.__.rohan_" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </section>
+  <div class="copyright">
+    Copyright © Rohan R. Made with Visual Studio Code
+  </div>
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('show');
+    }
+  </script>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwT2iKIuQPgH9e1kWDg2s9EAq91sKS91tyyVu3ZTz97nhvd1-HvpUZMADGLNe2Fe4wT8g/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+    
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent successfully!"
+            setTimeout(function(){
+                msg.innerHTML=""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+</script>
+</body>
+</html>
